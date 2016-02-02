@@ -1,0 +1,233 @@
+<html>
+<head>
+    
+    <title>WhiteDiamond_V1</title>
+    
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, maximum-scale=1.0">
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+        <link rel="stylesheet" href="Style.css" type="text/css" media="screen"/>
+        <script type="text/javascript" charset="utf-8" src="Config.js"></script>
+        <script type="text/javascript" charset="utf-8" src="jquery.min.js"></script>    
+    
+    <style type="text/css">
+
+		* {
+			padding: 0;
+			margin: 0;
+		}
+		@font-face {
+		    font-family: 'blanch';
+		    src: url('fonts/blanch.eot');
+		    src: url('fonts/blanch.woff') format('woff');
+		    font-weight: normal;
+		    font-style: normal;
+		}
+		@font-face {
+		    font-family: 'quicksand-regular';
+		    src: url('fonts/quicksand-regular-webfont.eot');
+		    src: url('fonts/quicksand-regular-webfont.woff') format('woff');
+		    src: url('fonts/quicksand-regular-webfont.svg') format('svg');
+		    src: url('fonts/quicksand-regular-webfont.ttf') format('ttf');
+		    font-weight: normal;
+		    font-style: normal;
+		}
+		@font-face {
+		    font-family: 'quicksand-bold';
+		    src: url('fonts/quicksand-bold-webfont.eot');
+		    src: url('fonts/quicksand-bold-webfont.woff') format('woff');
+		    src: url('fonts/quicksand-bold-webfont.svg') format('svg');
+		    src: url('fonts/quicksand-bold-webfont.ttf') format('ttf');
+		    font-weight: normal;
+		    font-style: normal;
+		}
+		body {
+			color: #000000;	
+			background-size: 100%;
+			font-size:16px;
+			opacity: 0.9;
+			text-align: center;
+		}
+		#hour, #time2 {
+			font-family: 'blanch', sans-serif;
+			font-size: 280%;
+			top:-10px;
+			padding-top: 4px;
+
+		}
+		#minute {
+			font-family: 'blanch', sans-serif;
+			font-size: 120%;
+			top:-2px;
+			padding-bottom: 3px;
+			position: relative;
+			top: -1px;
+
+		}
+		#dotw {
+			font-family: 'blanch', sans-serif;
+			text-transform: uppercase;
+			font-size: 180%;
+			margin-top: 3px;		
+			border-top: 1px solid rgba(0, 0, 0, .7);
+			padding: 3px;
+		}
+		#todaysDate {
+			font-family: 'blanch', sans-serif;
+			font-size: 100%;
+			margin-top: 1px;
+			padding-top: 5px;
+			border-top: 1px solid rgba(0, 0, 0, .7);
+			border-spacing: 0 2px 0 0;
+		}	
+		#container {
+			width:120px;
+			height:500px;
+			margin: auto;
+			padding: 10px 0 0 0;
+			position: relative;
+			left: 2px;
+		}
+		#containerCeption {
+			max-width: 100%;
+			max-height: 100%;
+			position: relative;
+			top:-313px;
+			left:-4px;
+			padding: 120px 0 0 0;
+		} 
+		#BatteryImage {
+			margin-left: -61px;	
+			max-height: 250;
+			max-width: 235; 	
+		}
+	</style>
+</head>
+
+<body onload="init()">
+	<div id="container">
+		<img id="BatteryImage" src="Battery/01.png"></img>
+	<div id="containerCeption">
+		<p id="hour"></p>
+		<p id="minute"></p>
+        <div id="LevelDisplay" style="display:none;"></div>
+        <div id="StateDisplay" style="display:none;"></div>
+        <img id="BatteryText" style="display:none;"></img>
+		<p id="dotw"></p>
+		<p id="todaysDate"></p>
+    </div>
+    </div>
+
+<script type="text/javascript">
+
+		function calculateTime() {
+
+			var currentTime = new Date();
+			var hour = currentTime.getHours();
+			var minute = currentTime.getMinutes();
+
+			hour = hour % 12;
+			hour = (hour) ? hour : 12;
+
+			if (hour < 0) { hour = "11"; }
+			if (minute < 0) { minute = "59"; }
+			if (minute < 10) { minute = "0" + minute; }
+			
+
+			var hours = ["One", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine", "Ten", "Eleven", "Twelve"];
+			var minutes = ["Oh One", "Oh Two", "Oh Three", "Oh Four", "Oh Five", "Oh Six", "Oh Seven", "Oh Eight", "Oh Nine", "Ten", "Eleven", "Twelve", "Thirteen", "Fourteen", "Fifteen", "Sixteen", "Seventeen", "Eighteen", "Nineteen", "Twenty", "Twenty-One", "Twenty-Two", "Twenty-Three", "Twenty-Four", "Twenty-Five", "Twenty-Six", "Twenty-Seven", "Twenty-Eight", "Twenty-Nine", "Thirty", "Thirty-One", "Thirty-Two", "Thirty-Three", "Thirty-Four", "Thirty-Five", "Thirty-Six", "Thirty-Seven", "Thirty-Eight", "Thirty-Nine", "Forty", "Forty-One", "Forty-Two", "Forty-Three", "Forty-Four", "Forty-Five", "Forty-Six", "Forty-Seven", "Forty-Eight", "Forty-Nine", "Fifty", "Fifty-One", "Fifty-Two", "Fifty-Three", "Fifty-Four", "Fifty-Five", "Fifty-Six", "Fifty-Seven", "Fifty-Eight", "Fifty-Nine", "O'Clock"];
+
+
+			 if (minute == 00) {
+				document.getElementById("hour").innerText = hours[hour-1];
+				document.getElementById("minute").innerText = "O'Clock";
+			}	
+			else {
+				document.getElementById("hour").innerText = hours[hour-1];
+				document.getElementById("minute").innerText = minutes[minute-1];
+			}
+		}
+
+		function calculateDate() {
+			var months = new Array("January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December");
+			var weekdays = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+			var currentTime = new Date();
+			var day = currentTime.getDate().toString();
+			var month = currentTime.getMonth();
+			var weekday = currentTime.getDay();
+
+			var n = day.charAt(day.length - 1);
+			
+			if (n == 1) {
+				if (day == 11) {
+					day+="th";
+				} else {
+					day+="st";
+				}
+			} else if (n == 2) {
+				if (day == 12) {
+					day+="th";
+				} else {
+					day+="nd";
+				}
+			} else if (n == 3) {
+				if (day == 13) {
+					day+="th";
+				} else {
+					day+="rd";
+				}
+			} else {
+				day+="th";
+			}
+
+			if (day.length == 1) { day1 = "0" + day; }
+
+
+			document.getElementById("dotw").innerText = weekdays[weekday]
+			document.getElementById("todaysDate").innerText = months[month] + " " + day;
+		}
+
+		calculateTime();
+		calculateDate();
+		setInterval(calculateTime, 2000);
+		setInterval(calculateDate, 60000);
+		
+	</script>
+
+    <script type="text/javascript">
+        var Level = "";
+        var State = "";
+
+$.ajaxSetup({
+cache: false,
+headers: {'Cache-Control': 'no-cache'}
+});
+
+function init(){
+
+refreshLocationTimer = setTimeout(init, 10*1000);
+jQuery.get('file:///private/var/mobile/Library/BatteryStats.txt', function(appdata) {
+
+var myvar = appdata;
+var substr = appdata.split('\n');
+var Level=substr[0].split(':')[1];
+var State=substr[1].split(':')[1];
+    
+if( Level > 0  && Level <= 10 )  document.getElementById("BatteryImage").src="Battery/01.png";
+if( Level > 10 && Level <= 20 )  document.getElementById("BatteryImage").src="Battery/02.png";
+if( Level > 20 && Level <= 30 )  document.getElementById("BatteryImage").src="Battery/03.png";
+if( Level > 30 && Level <= 40 )  document.getElementById("BatteryImage").src="Battery/04.png";
+if( Level > 40 && Level <= 50 )  document.getElementById("BatteryImage").src="Battery/05.png";
+if( Level > 50 && Level <= 60 )  document.getElementById("BatteryImage").src="Battery/06.png";
+if( Level > 60 && Level <= 70 )  document.getElementById("BatteryImage").src="Battery/07.png";
+if( Level > 70 && Level <= 80 )  document.getElementById("BatteryImage").src="Battery/08.png";
+if( Level > 80 && Level <= 90 )  document.getElementById("BatteryImage").src="Battery/09.png";
+if( Level > 90 && Level <= 100)  document.getElementById("BatteryImage").src="Battery/10.png";
+
+document.getElementById("StateDisplay").innerHTML = State;
+
+});
+}
+
+</script>
+</body>
+</html>

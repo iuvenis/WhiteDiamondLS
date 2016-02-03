@@ -1,106 +1,14 @@
 <html>
 <head>
-    
+
     <title>WhiteDiamond_V1</title>
-    
+
         <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, maximum-scale=1.0">
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
         <link rel="stylesheet" href="Style.css" type="text/css" media="screen"/>
         <script type="text/javascript" charset="utf-8" src="Config.js"></script>
-        <script type="text/javascript" charset="utf-8" src="jquery.min.js"></script>    
-    
-    <style type="text/css">
+        <script type="text/javascript" charset="utf-8" src="jquery.min.js"></script>
 
-		* {
-			padding: 0;
-			margin: 0;
-		}
-		@font-face {
-		    font-family: 'blanch';
-		    src: url('fonts/blanch.eot');
-		    src: url('fonts/blanch.woff') format('woff');
-		    font-weight: normal;
-		    font-style: normal;
-		}
-		@font-face {
-		    font-family: 'quicksand-regular';
-		    src: url('fonts/quicksand-regular-webfont.eot');
-		    src: url('fonts/quicksand-regular-webfont.woff') format('woff');
-		    src: url('fonts/quicksand-regular-webfont.svg') format('svg');
-		    src: url('fonts/quicksand-regular-webfont.ttf') format('ttf');
-		    font-weight: normal;
-		    font-style: normal;
-		}
-		@font-face {
-		    font-family: 'quicksand-bold';
-		    src: url('fonts/quicksand-bold-webfont.eot');
-		    src: url('fonts/quicksand-bold-webfont.woff') format('woff');
-		    src: url('fonts/quicksand-bold-webfont.svg') format('svg');
-		    src: url('fonts/quicksand-bold-webfont.ttf') format('ttf');
-		    font-weight: normal;
-		    font-style: normal;
-		}
-		body {
-			color: #000000;	
-			background-size: 100%;
-			font-size:16px;
-			opacity: 0.9;
-			text-align: center;
-		}
-		#hour, #time2 {
-			font-family: 'blanch', sans-serif;
-			font-size: 280%;
-			top:-10px;
-			padding-top: 4px;
-
-		}
-		#minute {
-			font-family: 'blanch', sans-serif;
-			font-size: 120%;
-			top:-2px;
-			padding-bottom: 3px;
-			position: relative;
-			top: -1px;
-
-		}
-		#dotw {
-			font-family: 'blanch', sans-serif;
-			text-transform: uppercase;
-			font-size: 180%;
-			margin-top: 3px;		
-			border-top: 1px solid rgba(0, 0, 0, .7);
-			padding: 3px;
-		}
-		#todaysDate {
-			font-family: 'blanch', sans-serif;
-			font-size: 100%;
-			margin-top: 1px;
-			padding-top: 5px;
-			border-top: 1px solid rgba(0, 0, 0, .7);
-			border-spacing: 0 2px 0 0;
-		}	
-		#container {
-			width:120px;
-			height:500px;
-			margin: auto;
-			padding: 10px 0 0 0;
-			position: relative;
-			left: 2px;
-		}
-		#containerCeption {
-			max-width: 100%;
-			max-height: 100%;
-			position: relative;
-			top:-313px;
-			left:-4px;
-			padding: 120px 0 0 0;
-		} 
-		#BatteryImage {
-			margin-left: -61px;	
-			max-height: 250;
-			max-width: 235; 	
-		}
-	</style>
 </head>
 
 <body onload="init()">
@@ -131,7 +39,7 @@
 			if (hour < 0) { hour = "11"; }
 			if (minute < 0) { minute = "59"; }
 			if (minute < 10) { minute = "0" + minute; }
-			
+
 
 			var hours = ["One", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine", "Ten", "Eleven", "Twelve"];
 			var minutes = ["Oh One", "Oh Two", "Oh Three", "Oh Four", "Oh Five", "Oh Six", "Oh Seven", "Oh Eight", "Oh Nine", "Ten", "Eleven", "Twelve", "Thirteen", "Fourteen", "Fifteen", "Sixteen", "Seventeen", "Eighteen", "Nineteen", "Twenty", "Twenty-One", "Twenty-Two", "Twenty-Three", "Twenty-Four", "Twenty-Five", "Twenty-Six", "Twenty-Seven", "Twenty-Eight", "Twenty-Nine", "Thirty", "Thirty-One", "Thirty-Two", "Thirty-Three", "Thirty-Four", "Thirty-Five", "Thirty-Six", "Thirty-Seven", "Thirty-Eight", "Thirty-Nine", "Forty", "Forty-One", "Forty-Two", "Forty-Three", "Forty-Four", "Forty-Five", "Forty-Six", "Forty-Seven", "Forty-Eight", "Forty-Nine", "Fifty", "Fifty-One", "Fifty-Two", "Fifty-Three", "Fifty-Four", "Fifty-Five", "Fifty-Six", "Fifty-Seven", "Fifty-Eight", "Fifty-Nine", "O'Clock"];
@@ -140,7 +48,7 @@
 			 if (minute == 00) {
 				document.getElementById("hour").innerText = hours[hour-1];
 				document.getElementById("minute").innerText = "O'Clock";
-			}	
+			}
 			else {
 				document.getElementById("hour").innerText = hours[hour-1];
 				document.getElementById("minute").innerText = minutes[minute-1];
@@ -156,7 +64,7 @@
 			var weekday = currentTime.getDay();
 
 			var n = day.charAt(day.length - 1);
-			
+
 			if (n == 1) {
 				if (day == 11) {
 					day+="th";
@@ -190,7 +98,7 @@
 		calculateDate();
 		setInterval(calculateTime, 2000);
 		setInterval(calculateDate, 60000);
-		
+
 	</script>
 
     <script type="text/javascript">
@@ -211,7 +119,7 @@ var myvar = appdata;
 var substr = appdata.split('\n');
 var Level=substr[0].split(':')[1];
 var State=substr[1].split(':')[1];
-    
+
 if( Level > 0  && Level <= 10 )  document.getElementById("BatteryImage").src="Battery/01.png";
 if( Level > 10 && Level <= 20 )  document.getElementById("BatteryImage").src="Battery/02.png";
 if( Level > 20 && Level <= 30 )  document.getElementById("BatteryImage").src="Battery/03.png";

@@ -10,3 +10,6 @@ May add weather info as well.
 Battery:
 
 The battery indicator is currently the circles on the sides of the diamonds, their opacity is lowered as the phone's charge goes down until a "Low Bat." warning appears on the sides when 10% remains.
+
+
+![screenshot](https://github.com/tpyoung/WhiteDiamondLS/blob/master/screenshot.jpg)
